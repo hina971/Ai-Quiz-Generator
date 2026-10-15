@@ -10,7 +10,7 @@ from quiz_engine import create_quiz
 # ============== PAGE CONFIG ==============
 
 st.set_page_config(
-    page_title="UA Quiz AI",
+    page_title="Quiz AI",
     page_icon="🧠",
     layout="wide",
     initial_sidebar_state="expanded",
@@ -911,12 +911,12 @@ elif page == "📊 My Results":
 elif page == "ℹ️ About":
 
     show_hero(
-        "ℹ️ About UA Quiz AI",
+        "ℹ️ About Quiz AI",
         "Your personal AI-powered learning assistant.",
     )
 
     st.markdown("""
-    ### 🧠 What is UA Quiz AI?
+    ### 🧠 What is Quiz AI?
 
     UA Quiz AI converts your study documents into interactive quizzes
     to help you learn, practice, and test your knowledge.
@@ -931,7 +931,7 @@ elif page == "ℹ️ About":
 
     ### 👨‍💻 Created by
 
-    **Ubaid Ur Rehman**
+    **Hina Ramzan**
 
     *AI Research • Data Analysis • Research & Problem Solving*
     """)
