@@ -498,7 +498,7 @@ def show_footer():
     <div class="ua-footer">
         <h3>🧠 Quiz AI</h3>
         <p>AI-Powered Smart Quiz Generator</p>
-        <p>Designed &amp; Developed with ❤️ by</p>
+        <p>Designed &amp; Developed by</p>
         <p class="creator">Hina Ramzan</p>
         <p>Learn Smarter with AI</p>
         <p class="copyright">
