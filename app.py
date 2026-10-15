@@ -35,6 +35,11 @@ st.markdown("""
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
 
+/* Tell the browser this is a dark page so built-in widgets match */
+:root {
+    color-scheme: dark;
+}
+
 /* Animated Gradient Background */
 .stApp {
     background: linear-gradient(
@@ -47,7 +52,7 @@ st.markdown("""
     );
     background-size: 400% 400%;
     animation: gradientMove 15s ease infinite;
-    color: #f8fafc;
+    color: #ffffff;
     font-family: 'Inter', sans-serif;
 }
 
@@ -70,6 +75,171 @@ st.markdown("""
     background: rgba(11, 16, 32, 0.85);
 }
 
+/* ===== BRIGHT TEXT EVERYWHERE ===== */
+
+/* Normal text, lists, bold, italic */
+[data-testid="stMarkdownContainer"],
+[data-testid="stMarkdownContainer"] p,
+[data-testid="stMarkdownContainer"] li,
+[data-testid="stMarkdownContainer"] span,
+[data-testid="stMarkdownContainer"] strong,
+[data-testid="stMarkdownContainer"] em,
+[data-testid="stText"],
+.stApp p,
+.stApp li {
+    color: #ffffff;
+}
+
+/* Headings */
+h1, h2, h3, h4, h5, h6,
+[data-testid="stHeading"],
+[data-testid="stMarkdownContainer"] h1,
+[data-testid="stMarkdownContainer"] h2,
+[data-testid="stMarkdownContainer"] h3,
+[data-testid="stMarkdownContainer"] h4 {
+    color: #ffffff !important;
+}
+
+/* Widget labels (selectbox, radio, file uploader, text input, ...) */
+[data-testid="stWidgetLabel"],
+[data-testid="stWidgetLabel"] p,
+[data-testid="stWidgetLabel"] span,
+.stApp label,
+.stApp label p {
+    color: #ffffff !important;
+    font-weight: 600;
+}
+
+/* Radio and checkbox answer options */
+[data-testid="stRadio"] label,
+[data-testid="stRadio"] label p,
+[data-testid="stRadio"] label span,
+[data-testid="stRadio"] div[role="radiogroup"] label div {
+    color: #ffffff !important;
+    font-size: 16px;
+}
+
+/* Captions (small grey text) */
+[data-testid="stCaptionContainer"],
+[data-testid="stCaptionContainer"] p,
+.stApp small {
+    color: #e2e8f0 !important;
+}
+
+/* Sidebar text */
+[data-testid="stSidebar"] p,
+[data-testid="stSidebar"] span,
+[data-testid="stSidebar"] label,
+[data-testid="stSidebar"] div {
+    color: #ffffff;
+}
+
+/* Input boxes and dropdowns: dark box, white text */
+[data-baseweb="select"] > div,
+[data-baseweb="input"] > div,
+[data-baseweb="base-input"],
+.stTextInput input,
+.stTextArea textarea {
+    background-color: rgba(15, 23, 42, 0.85) !important;
+    color: #ffffff !important;
+    border-color: #6754a5 !important;
+}
+
+[data-baseweb="select"] span,
+[data-baseweb="select"] div {
+    color: #ffffff !important;
+}
+
+[data-baseweb="select"] svg {
+    fill: #ffffff !important;
+}
+
+input::placeholder,
+textarea::placeholder {
+    color: #cbd5e1 !important;
+    opacity: 1;
+}
+
+/* Dropdown list that opens under a selectbox */
+[data-baseweb="popover"],
+[data-baseweb="popover"] ul,
+[data-baseweb="menu"] {
+    background-color: #1e1b4b !important;
+}
+
+[data-baseweb="popover"] li,
+[data-baseweb="popover"] li div,
+[data-baseweb="popover"] li span,
+[data-baseweb="menu"] li,
+[data-baseweb="menu"] li div,
+[data-baseweb="menu"] li span {
+    color: #ffffff !important;
+}
+
+[data-baseweb="popover"] li:hover,
+[data-baseweb="menu"] li:hover {
+    background-color: #4f46e5 !important;
+}
+
+/* Metrics (Score, Percentage, ...) */
+[data-testid="stMetricLabel"],
+[data-testid="stMetricLabel"] p,
+[data-testid="stMetricLabel"] div {
+    color: #e2e8f0 !important;
+    font-weight: 600;
+}
+
+[data-testid="stMetricValue"],
+[data-testid="stMetricValue"] div {
+    color: #ffffff !important;
+    font-weight: 800;
+}
+
+/* Message boxes (success, error, info, warning): dark box, white text */
+[data-testid="stAlert"] {
+    background-color: rgba(15, 23, 42, 0.88) !important;
+    border: 1px solid #67e8f9;
+    border-radius: 12px;
+}
+
+[data-testid="stAlert"] p,
+[data-testid="stAlert"] div,
+[data-testid="stAlert"] span,
+[data-testid="stAlert"] li {
+    color: #ffffff !important;
+}
+
+/* Expander (Technical Details) */
+[data-testid="stExpander"] {
+    background: rgba(15, 23, 42, 0.6);
+    border: 1px solid #6754a5;
+    border-radius: 12px;
+}
+
+[data-testid="stExpander"] summary,
+[data-testid="stExpander"] summary p,
+[data-testid="stExpander"] summary span {
+    color: #ffffff !important;
+}
+
+/* Code blocks */
+[data-testid="stCode"],
+[data-testid="stCode"] pre,
+[data-testid="stCode"] code {
+    background-color: #0b1020 !important;
+    color: #a5f3fc !important;
+}
+
+/* Bordered containers (quiz result cards) and the quiz form */
+[data-testid="stVerticalBlockBorderWrapper"],
+[data-testid="stForm"] {
+    background: rgba(15, 23, 42, 0.45);
+    border-color: #6754a5 !important;
+    border-radius: 14px;
+}
+
+/* ===== CUSTOM CARDS ===== */
+
 .ua-header {
     background: linear-gradient(120deg, #111827, #312e81, #6d28d9);
     border: 1px solid #6754a5;
@@ -83,33 +253,33 @@ st.markdown("""
 .ua-header h1 {
     font-size: clamp(28px, 5vw, 43px);
     font-weight: 800;
-    color: #ffffff;
+    color: #ffffff !important;
     margin: 0;
 }
 
 .ua-header h1 span {
-    color: #a5f3fc;
+    color: #a5f3fc !important;
 }
 
 .ua-header p {
-    color: #ddd6fe;
-    font-size: 14px;
+    color: #f5f3ff !important;
+    font-size: 15px;
     line-height: 1.7;
 }
 
 .hero-title {
     font-size: clamp(27px, 4vw, 42px);
     font-weight: 800;
-    color: white;
+    color: #ffffff !important;
 }
 
 .hero-title span {
-    color: #a78bfa;
+    color: #c4b5fd !important;
 }
 
 .hero-subtitle {
-    color: #cbd5e1;
-    font-size: 14px;
+    color: #f1f5f9 !important;
+    font-size: 15px;
     line-height: 1.8;
 }
 
@@ -122,33 +292,42 @@ st.markdown("""
 }
 
 .section-card h3 {
-    color: #c4b5fd;
+    color: #e9d5ff !important;
 }
 
 .section-card p {
-    color: #cbd5e1;
-    font-size: 14px;
+    color: #f1f5f9 !important;
+    font-size: 15px;
 }
 
 div.stButton > button,
 div.stFormSubmitButton > button,
-div.stDownloadButton > button {
+div.stDownloadButton > button,
+[data-testid="stFileUploaderDropzone"] button {
     background: linear-gradient(100deg, #7c3aed, #4f46e5, #06b6d4);
     background-size: 200% 200%;
     border-radius: 12px;
     border: 1px solid #8b5cf6;
-    color: white;
+    color: #ffffff !important;
     font-weight: 700;
     min-height: 44px;
     transition: all 0.3s ease;
 }
 
+div.stButton > button p,
+div.stFormSubmitButton > button p,
+div.stDownloadButton > button p,
+[data-testid="stFileUploaderDropzone"] button span {
+    color: #ffffff !important;
+}
+
 div.stButton > button:hover,
 div.stFormSubmitButton > button:hover,
-div.stDownloadButton > button:hover {
+div.stDownloadButton > button:hover,
+[data-testid="stFileUploaderDropzone"] button:hover {
     background-position: 100% 50%;
     border-color: #67e8f9;
-    color: white;
+    color: #ffffff !important;
     transform: translateY(-2px);
 }
 
@@ -159,12 +338,8 @@ div[data-testid="stMetric"] {
     padding: 16px;
 }
 
-h1, h2, h3 {
-    color: #f8fafc !important;
-}
-
 hr {
-    border-color: #2b3b60;
+    border-color: #4b5d8a;
 }
 
 .ua-footer {
@@ -178,24 +353,24 @@ hr {
 }
 
 .ua-footer h3 {
-    color: #a5f3fc;
+    color: #a5f3fc !important;
 }
 
 .ua-footer p {
-    color: #cbd5e1;
-    font-size: 13px;
+    color: #f1f5f9 !important;
+    font-size: 14px;
     line-height: 1.7;
 }
 
 .ua-footer .creator {
-    color: #a5f3fc;
-    font-size: 17px;
+    color: #a5f3fc !important;
+    font-size: 18px;
     font-weight: 800;
 }
 
 .ua-footer .copyright {
-    color: #94a3b8;
-    font-size: 11px;
+    color: #cbd5e1 !important;
+    font-size: 12px;
 }
 
 @media (max-width: 640px) {
@@ -229,11 +404,24 @@ hr {
     transform: translateY(-3px);
 }
 
+/* File uploader */
 [data-testid="stFileUploader"] {
     background: rgba(255, 255, 255, 0.05);
     border: 1px dashed rgba(34, 211, 238, 0.65);
     border-radius: 16px;
     padding: 12px;
+}
+
+[data-testid="stFileUploaderDropzone"] {
+    background: rgba(15, 23, 42, 0.6);
+    border-radius: 12px;
+}
+
+[data-testid="stFileUploader"] small,
+[data-testid="stFileUploader"] span,
+[data-testid="stFileUploader"] p,
+[data-testid="stFileUploaderFileName"] {
+    color: #ffffff !important;
 }
 </style>
 """, unsafe_allow_html=True)
