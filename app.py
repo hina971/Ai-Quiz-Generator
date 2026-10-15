@@ -30,29 +30,33 @@ for key, value in defaults.items():
         st.session_state[key] = value
 
 # ============== CUSTOM DESIGN ==============
+# Colour plan:
+#   Page background  -> peach gradient
+#   Text on peach    -> very dark and bold (maximum contrast)
+#   Header, sidebar, footer, buttons -> deep plum/rose with bright white text
 
 st.markdown("""
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
 
-/* Tell the browser this is a dark page so built-in widgets match */
+/* Light page, so built-in widgets match the peach background */
 :root {
-    color-scheme: dark;
+    color-scheme: light;
 }
 
-/* Animated Gradient Background */
+/* ===== PEACH GRADIENT BACKGROUND ===== */
 .stApp {
     background: linear-gradient(
         -45deg,
-        #0f172a,
-        #312e81,
-        #581c87,
-        #164e63,
-        #0f172a
+        #ffe5d0,
+        #ffcfb0,
+        #ffb99a,
+        #ffd6c0,
+        #ffe5d0
     );
     background-size: 400% 400%;
     animation: gradientMove 15s ease infinite;
-    color: #ffffff;
+    color: #1a0b2e;
     font-family: 'Inter', sans-serif;
 }
 
@@ -66,18 +70,34 @@ st.markdown("""
     background: transparent;
 }
 
-[data-testid="stSidebar"] {
-    background: linear-gradient(180deg, #111827, #1e1b4b, #3b0764);
-    border-right: 1px solid #273451;
-}
-
 [data-testid="stHeader"] {
-    background: rgba(11, 16, 32, 0.85);
+    background: rgba(255, 229, 208, 0.85);
 }
 
-/* ===== BRIGHT TEXT EVERYWHERE ===== */
+/* ===== SIDEBAR (dark plum, bright white text) ===== */
+[data-testid="stSidebar"] {
+    background: linear-gradient(180deg, #4a044e, #701a75, #9d174d);
+    border-right: 1px solid #f9a8d4;
+}
 
-/* Normal text, lists, bold, italic */
+[data-testid="stSidebar"] p,
+[data-testid="stSidebar"] span,
+[data-testid="stSidebar"] label,
+[data-testid="stSidebar"] div,
+[data-testid="stSidebar"] h1,
+[data-testid="stSidebar"] h2,
+[data-testid="stSidebar"] h3,
+[data-testid="stSidebar"] [data-testid="stCaptionContainer"],
+[data-testid="stSidebar"] [data-testid="stCaptionContainer"] p {
+    color: #ffffff !important;
+}
+
+[data-testid="stSidebar"] hr {
+    border-color: rgba(255, 255, 255, 0.35);
+}
+
+/* ===== TEXT ON THE PEACH PAGE (dark = clearly visible) ===== */
+
 [data-testid="stMarkdownContainer"],
 [data-testid="stMarkdownContainer"] p,
 [data-testid="stMarkdownContainer"] li,
@@ -87,84 +107,85 @@ st.markdown("""
 [data-testid="stText"],
 .stApp p,
 .stApp li {
-    color: #ffffff;
+    color: #1a0b2e;
 }
 
-/* Headings */
 h1, h2, h3, h4, h5, h6,
 [data-testid="stHeading"],
 [data-testid="stMarkdownContainer"] h1,
 [data-testid="stMarkdownContainer"] h2,
 [data-testid="stMarkdownContainer"] h3,
 [data-testid="stMarkdownContainer"] h4 {
-    color: #ffffff !important;
+    color: #4a044e !important;
+    font-weight: 800;
 }
 
-/* Widget labels (selectbox, radio, file uploader, text input, ...) */
+/* Widget labels */
 [data-testid="stWidgetLabel"],
 [data-testid="stWidgetLabel"] p,
 [data-testid="stWidgetLabel"] span,
 .stApp label,
 .stApp label p {
-    color: #ffffff !important;
-    font-weight: 600;
+    color: #1a0b2e !important;
+    font-weight: 700;
 }
 
-/* Radio and checkbox answer options */
+/* Radio answer options */
 [data-testid="stRadio"] label,
 [data-testid="stRadio"] label p,
 [data-testid="stRadio"] label span,
 [data-testid="stRadio"] div[role="radiogroup"] label div {
-    color: #ffffff !important;
+    color: #1a0b2e !important;
     font-size: 16px;
+    font-weight: 600;
 }
 
-/* Captions (small grey text) */
+/* Sidebar radio must stay white (it is on the dark sidebar) */
+[data-testid="stSidebar"] [data-testid="stRadio"] label,
+[data-testid="stSidebar"] [data-testid="stRadio"] label p,
+[data-testid="stSidebar"] [data-testid="stRadio"] label span,
+[data-testid="stSidebar"] [data-testid="stRadio"] div[role="radiogroup"] label div {
+    color: #ffffff !important;
+}
+
+/* Captions */
 [data-testid="stCaptionContainer"],
 [data-testid="stCaptionContainer"] p,
 .stApp small {
-    color: #e2e8f0 !important;
+    color: #3b0764 !important;
 }
 
-/* Sidebar text */
-[data-testid="stSidebar"] p,
-[data-testid="stSidebar"] span,
-[data-testid="stSidebar"] label,
-[data-testid="stSidebar"] div {
-    color: #ffffff;
-}
-
-/* Input boxes and dropdowns: dark box, white text */
+/* ===== INPUTS AND DROPDOWNS (white box, dark text) ===== */
 [data-baseweb="select"] > div,
 [data-baseweb="input"] > div,
 [data-baseweb="base-input"],
 .stTextInput input,
 .stTextArea textarea {
-    background-color: rgba(15, 23, 42, 0.85) !important;
-    color: #ffffff !important;
-    border-color: #6754a5 !important;
+    background-color: #ffffff !important;
+    color: #1a0b2e !important;
+    border-color: #c2410c !important;
 }
 
 [data-baseweb="select"] span,
 [data-baseweb="select"] div {
-    color: #ffffff !important;
+    color: #1a0b2e !important;
 }
 
 [data-baseweb="select"] svg {
-    fill: #ffffff !important;
+    fill: #4a044e !important;
 }
 
 input::placeholder,
 textarea::placeholder {
-    color: #cbd5e1 !important;
+    color: #6b5876 !important;
     opacity: 1;
 }
 
-/* Dropdown list that opens under a selectbox */
+/* List that opens under a dropdown */
 [data-baseweb="popover"],
 [data-baseweb="popover"] ul,
 [data-baseweb="menu"] {
-    background-color: #1e1b4b !important;
+    background-color: #ffffff !important;
 }
 
 [data-baseweb="popover"] li,
@@ -173,32 +194,39 @@ textarea::placeholder {
 [data-baseweb="menu"] li,
 [data-baseweb="menu"] li div,
 [data-baseweb="menu"] li span {
-    color: #ffffff !important;
+    color: #1a0b2e !important;
 }
 
 [data-baseweb="popover"] li:hover,
 [data-baseweb="menu"] li:hover {
-    background-color: #4f46e5 !important;
+    background-color: #ffd6c0 !important;
 }
 
-/* Metrics (Score, Percentage, ...) */
+/* ===== METRICS ===== */
+div[data-testid="stMetric"] {
+    background: rgba(255, 255, 255, 0.75);
+    border: 1px solid #fb923c;
+    border-radius: 14px;
+    padding: 16px;
+}
+
 [data-testid="stMetricLabel"],
 [data-testid="stMetricLabel"] p,
 [data-testid="stMetricLabel"] div {
-    color: #e2e8f0 !important;
-    font-weight: 600;
+    color: #7c2d12 !important;
+    font-weight: 700;
 }
 
 [data-testid="stMetricValue"],
 [data-testid="stMetricValue"] div {
-    color: #ffffff !important;
+    color: #1a0b2e !important;
     font-weight: 800;
 }
 
-/* Message boxes (success, error, info, warning): dark box, white text */
+/* ===== MESSAGE BOXES (success / error / info / warning) ===== */
 [data-testid="stAlert"] {
-    background-color: rgba(15, 23, 42, 0.88) !important;
-    border: 1px solid #67e8f9;
+    background-color: rgba(255, 255, 255, 0.9) !important;
+    border: 2px solid #c2410c;
     border-radius: 12px;
 }
 
@@ -206,48 +234,53 @@ textarea::placeholder {
 [data-testid="stAlert"] div,
 [data-testid="stAlert"] span,
 [data-testid="stAlert"] li {
-    color: #ffffff !important;
+    color: #1a0b2e !important;
+    font-weight: 600;
 }
 
-/* Expander (Technical Details) */
+/* ===== EXPANDER ===== */
 [data-testid="stExpander"] {
-    background: rgba(15, 23, 42, 0.6);
-    border: 1px solid #6754a5;
+    background: rgba(255, 255, 255, 0.75);
+    border: 1px solid #fb923c;
     border-radius: 12px;
 }
 
 [data-testid="stExpander"] summary,
 [data-testid="stExpander"] summary p,
 [data-testid="stExpander"] summary span {
-    color: #ffffff !important;
+    color: #1a0b2e !important;
+    font-weight: 700;
 }
 
-/* Code blocks */
+/* ===== CODE BLOCKS (dark box, bright text) ===== */
 [data-testid="stCode"],
 [data-testid="stCode"] pre,
 [data-testid="stCode"] code {
-    background-color: #0b1020 !important;
-    color: #a5f3fc !important;
+    background-color: #2a0e3a !important;
+    color: #fde68a !important;
 }
 
-/* Bordered containers (quiz result cards) and the quiz form */
+/* ===== BORDERED CONTAINERS AND QUIZ FORM ===== */
 [data-testid="stVerticalBlockBorderWrapper"],
 [data-testid="stForm"] {
-    background: rgba(15, 23, 42, 0.45);
-    border-color: #6754a5 !important;
+    background: rgba(255, 255, 255, 0.55);
+    border-color: #fb923c !important;
     border-radius: 14px;
 }
 
-/* ===== CUSTOM CARDS ===== */
+hr {
+    border-color: #c2410c;
+}
 
+/* ===== HEADER BANNER (dark, bright white text) ===== */
 .ua-header {
-    background: linear-gradient(120deg, #111827, #312e81, #6d28d9);
-    border: 1px solid #6754a5;
+    background: linear-gradient(120deg, #4a044e, #831843, #be185d);
+    border: 1px solid #f9a8d4;
     border-radius: 20px;
     padding: 25px 15px;
     margin-bottom: 28px;
     text-align: center;
-    box-shadow: 0 12px 35px rgba(0,0,0,0.22);
+    box-shadow: 0 12px 35px rgba(74, 4, 78, 0.25);
 }
 
 .ua-header h1 {
@@ -258,56 +291,62 @@ textarea::placeholder {
 }
 
 .ua-header h1 span {
-    color: #a5f3fc !important;
+    color: #fed7aa !important;
 }
 
 .ua-header p {
-    color: #f5f3ff !important;
+    color: #ffffff !important;
     font-size: 15px;
+    font-weight: 500;
     line-height: 1.7;
 }
 
+/* ===== HERO CARD ===== */
 .hero-title {
     font-size: clamp(27px, 4vw, 42px);
     font-weight: 800;
-    color: #ffffff !important;
+    color: #4a044e !important;
 }
 
 .hero-title span {
-    color: #c4b5fd !important;
+    color: #be123c !important;
 }
 
 .hero-subtitle {
-    color: #f1f5f9 !important;
-    font-size: 15px;
+    color: #1a0b2e !important;
+    font-size: 16px;
+    font-weight: 500;
     line-height: 1.8;
 }
 
+/* ===== FEATURE CARDS ===== */
 .section-card {
-    background: rgba(24,36,65,0.78);
-    border: 1px solid #33446b;
+    background: rgba(255, 255, 255, 0.75);
+    border: 1px solid #fb923c;
     border-radius: 16px;
     padding: 20px;
     margin-bottom: 16px;
 }
 
 .section-card h3 {
-    color: #e9d5ff !important;
+    color: #9d174d !important;
 }
 
 .section-card p {
-    color: #f1f5f9 !important;
+    color: #1a0b2e !important;
     font-size: 15px;
+    font-weight: 500;
 }
 
+/* ===== BUTTONS (deep rose, bright white text) ===== */
 div.stButton > button,
 div.stFormSubmitButton > button,
 div.stDownloadButton > button,
 [data-testid="stFileUploaderDropzone"] button {
-    background: linear-gradient(100deg, #7c3aed, #4f46e5, #06b6d4);
+    background: linear-gradient(100deg, #9d174d, #be123c, #c2410c);
     background-size: 200% 200%;
     border-radius: 12px;
-    border: 1px solid #8b5cf6;
+    border: 1px solid #f9a8d4;
     color: #ffffff !important;
     font-weight: 700;
     min-height: 44px;
@@ -326,26 +365,16 @@ div.stFormSubmitButton > button:hover,
 div.stDownloadButton > button:hover,
 [data-testid="stFileUploaderDropzone"] button:hover {
     background-position: 100% 50%;
-    border-color: #67e8f9;
+    border-color: #4a044e;
     color: #ffffff !important;
     transform: translateY(-2px);
 }
 
-div[data-testid="stMetric"] {
-    background: rgba(24,36,65,0.78);
-    border: 1px solid #33446b;
-    border-radius: 14px;
-    padding: 16px;
-}
-
-hr {
-    border-color: #4b5d8a;
-}
-
+/* ===== FOOTER (dark, bright white text) ===== */
 .ua-footer {
-    background: linear-gradient(135deg, #111827, #1e1b4b);
-    border: 1px solid #373064;
-    border-top: 3px solid #8b5cf6;
+    background: linear-gradient(135deg, #4a044e, #831843);
+    border: 1px solid #f9a8d4;
+    border-top: 3px solid #fb923c;
     border-radius: 16px;
     padding: 24px 12px;
     text-align: center;
@@ -353,23 +382,23 @@ hr {
 }
 
 .ua-footer h3 {
-    color: #a5f3fc !important;
+    color: #fed7aa !important;
 }
 
 .ua-footer p {
-    color: #f1f5f9 !important;
+    color: #ffffff !important;
     font-size: 14px;
     line-height: 1.7;
 }
 
 .ua-footer .creator {
-    color: #a5f3fc !important;
+    color: #fed7aa !important;
     font-size: 18px;
     font-weight: 800;
 }
 
 .ua-footer .copyright {
-    color: #cbd5e1 !important;
+    color: #fce7f3 !important;
     font-size: 12px;
 }
 
@@ -383,14 +412,14 @@ hr {
 .feature-card,
 .stat-card,
 .result-card {
-    background: rgba(255, 255, 255, 0.08);
+    background: rgba(255, 255, 255, 0.7);
     backdrop-filter: blur(14px);
     -webkit-backdrop-filter: blur(14px);
-    border: 1px solid rgba(255, 255, 255, 0.18);
+    border: 1px solid #fb923c;
     border-radius: 20px;
     padding: 22px;
     margin-bottom: 18px;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.20);
+    box-shadow: 0 8px 32px rgba(194, 65, 12, 0.15);
     text-align: center;
     transition: all 0.3s ease;
 }
@@ -399,21 +428,21 @@ hr {
 .feature-card:hover,
 .stat-card:hover,
 .result-card:hover {
-    border-color: rgba(34, 211, 238, 0.65);
-    box-shadow: 0 12px 35px rgba(34, 211, 238, 0.12);
+    border-color: #be123c;
+    box-shadow: 0 12px 35px rgba(190, 18, 60, 0.2);
     transform: translateY(-3px);
 }
 
-/* File uploader */
+/* ===== FILE UPLOADER ===== */
 [data-testid="stFileUploader"] {
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px dashed rgba(34, 211, 238, 0.65);
+    background: rgba(255, 255, 255, 0.6);
+    border: 2px dashed #c2410c;
     border-radius: 16px;
     padding: 12px;
 }
 
 [data-testid="stFileUploaderDropzone"] {
-    background: rgba(15, 23, 42, 0.6);
+    background: rgba(255, 255, 255, 0.8);
     border-radius: 12px;
 }
 
@@ -421,6 +450,12 @@ hr {
 [data-testid="stFileUploader"] span,
 [data-testid="stFileUploader"] p,
 [data-testid="stFileUploaderFileName"] {
+    color: #1a0b2e !important;
+}
+
+/* The upload button text must stay white */
+[data-testid="stFileUploaderDropzone"] button span,
+[data-testid="stFileUploaderDropzone"] button p {
     color: #ffffff !important;
 }
 </style>
@@ -432,7 +467,7 @@ hr {
 def show_header():
     st.markdown("""
     <div class="ua-header">
-        <h1>🧠 UA <span>Quiz AI</span></h1>
+        <h1>🧠 Quiz <span>AI</span></h1>
         <p>
             AI-POWERED LEARNING PLATFORM<br>
             Transform Documents into Smart Interactive Quizzes
@@ -444,7 +479,7 @@ def show_header():
 
 
 def show_hero(
-    title="Welcome to <span>UA Quiz AI</span> 🧠",
+    title="Welcome to <span>Quiz AI</span> 🧠",
     subtitle=(
         "Turn your study material into interactive quizzes."
         "<br>Test your knowledge and track your performance."
@@ -461,13 +496,13 @@ def show_hero(
 def show_footer():
     st.markdown("""
     <div class="ua-footer">
-        <h3>🧠 UA Quiz AI</h3>
+        <h3>🧠 Quiz AI</h3>
         <p>AI-Powered Smart Quiz Generator</p>
         <p>Designed &amp; Developed with ❤️ by</p>
-        <p class="creator">Ubaid Ur Rehman</p>
+        <p class="creator">Hina Ramzan</p>
         <p>Learn Smarter with AI</p>
         <p class="copyright">
-            © 2026 UA Quiz AI. All Rights Reserved.
+            © 2026 Quiz AI. All Rights Reserved.
         </p>
     </div>
     """, unsafe_allow_html=True)
@@ -528,7 +563,7 @@ api_key = api_key or os.getenv("GEMINI_API_KEY", "")
 # ============== SIDEBAR ==============
 
 with st.sidebar:
-    st.markdown("## 🧠 UA Quiz AI")
+    st.markdown("## 🧠 Quiz AI")
     st.caption("Your AI-powered learning companion")
     st.divider()
 
@@ -551,7 +586,7 @@ with st.sidebar:
     st.markdown("**⚡ Powered by Gemini AI**")
     st.caption("Upload. Generate. Learn.")
     st.divider()
-    st.caption("Created by Ubaid Ur Rehman")
+    st.caption("Created by Hina Ramzan")
 
 
 # ============== GLOBAL HEADER ==============
@@ -856,7 +891,7 @@ elif page == "📝 Quiz Generator":
                     ensure_ascii=False,
                     indent=2,
                 ),
-                file_name="ua_quiz_ai_results.json",
+                file_name="quiz_ai_results.json",
                 mime="application/json",
                 use_container_width=True,
             )
@@ -918,7 +953,7 @@ elif page == "ℹ️ About":
     st.markdown("""
     ### 🧠 What is Quiz AI?
 
-    UA Quiz AI converts your study documents into interactive quizzes
+    Quiz AI converts your study documents into interactive quizzes
     to help you learn, practice, and test your knowledge.
 
     ### ✨ Features
